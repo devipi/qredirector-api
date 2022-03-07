@@ -6,10 +6,10 @@ final class Usuario {
     public $nombre = null;
     public $admin = false;
     public $clave = null;
-    public $id_local = 0;
-    public $local = null;
+    public $id_ubicacion = 0;
+    public $ubicacion = null;
     
-    public function __construct(int $id = null, string $usuario = null, string $nombre = null, string $clave = null, bool $admin = false, int $id_local = 0, string $local = null) {
+    public function __construct(int $id = null, string $usuario = null, string $nombre = null, string $clave = null, bool $admin = false, int $id_ubicacion = 0, string $ubicacion = null) {
         $this->id = $id;
         $this->usuario = $usuario;
         $this->nombre = $nombre;
@@ -17,12 +17,12 @@ final class Usuario {
         if($admin != null){
             $this->admin = $admin;
         }
-        $this->id_local = $id_local;
-        $this->local = $local;
+        $this->id_ubicacion = $id_ubicacion;
+        $this->ubicacion = $ubicacion;
     }
 
     public static function fromArray(array $data): Usuario {
-        return new Usuario($data['id'], $data['usuario'], $data['nombre'], $data['clave'], $data['admin'], $data['id_local'], $data['local']);
+        return new Usuario($data['id'], $data['usuario'], $data['nombre'], $data['clave'], $data['admin'], $data['id_ubicacion'], $data['ubicacion']);
     }
 
     public static function getId(string $usuario): int {
@@ -30,12 +30,12 @@ final class Usuario {
         return $bd->seleccionar("usuarios", "usuario = '$usuario'", "id")->fetch()['id'];
     }
 
-    public static function getLocal(string $usuario): int {
+    public static function getUbicacion(string $usuario): int {
         if($usuario == null){
             return -1;
         }
         $bd = new Bd();
-        return $bd->seleccionar("usuarios", "usuario = '$usuario'", "id_local")->fetch()['id_local'];
+        return $bd->seleccionar("usuarios", "usuario = '$usuario'", "id_ubicacion")->fetch()['id_ubicacion'];
     }
 
     public static function getIdActual(): int {
