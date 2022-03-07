@@ -72,8 +72,8 @@ final class index {
             exit($this->Response->send());
         }
         
-        if (isset($_SERVER['PHP_AUTH_USER'])&&isset($_SERVER['PHP_AUTH_PW'])||$request->URL[0]=="base64") {
-            if (Usuario::authenticate($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])||$request->URL[0]=="base64") {
+        if (isset($_SERVER['PHP_AUTH_USER'])&&isset($_SERVER['PHP_AUTH_PW'])) {
+            if (Usuario::authenticate($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])) {
                 
                 $class = $request->URL[0];
                 $this->cargarEP($class);
@@ -87,7 +87,7 @@ final class index {
                     $this->Response->Body = $d;
                     $this->Response->StatusCode = HTTPCodes::OK;
                 } else if ($request->Verb === "POST") {
-                    if(Usuario::isAdmin($_SERVER['PHP_AUTH_USER']) || $request->URL[0]=="prestamos" || $request->URL[0]=="reportes"){
+                    if(Usuario::isAdmin($_SERVER['PHP_AUTH_USER'])){
                         $d = $class->post((array) json_decode($request->Body));
                         if($d < 1){
                             throw new Exception("Could NOT insert the requested object.", 1);
@@ -125,7 +125,7 @@ final class index {
                 exit($this->Response->send());
             }
         }
-        $this->Response->addHeader("WWW-Authenticate", "Basic realm=\"Sigesaf API\"");
+        //$this->Response->addHeader("WWW-Authenticate", "Basic realm=\"Sigesaf API\"");
         $this->Response->send();
         throw new UnauthorizedException("Usuario y/o clave de acceso incorrectos.", 1);
     }
