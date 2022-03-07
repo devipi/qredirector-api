@@ -22,6 +22,6 @@ final class Codigo {
     }
 
     public static function fromArray(array $data): Codigo {
-        return new Codigo($data['id'], $data['url_code'], $data['activo'], $data['file'], $data['hits'], $data['id_ubicacion'], $data['ubicacion']);
+        return new Codigo($data['id'], $data['url_code'], $data['activo'], $data['hits'], $data['file'], $data['id_ubicacion'], $data['ubicacion']);
     }
 }
