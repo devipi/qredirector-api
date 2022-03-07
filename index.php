@@ -77,7 +77,7 @@ final class index {
                 
                 $class = $request->URL[0];
                 $this->cargarEP($class);
-                $class = new $class(Usuario::getLocal((string)$_SERVER['PHP_AUTH_USER']));
+                $class = new $class(Usuario::getUbicacion((string)$_SERVER['PHP_AUTH_USER']));
                 
                 if ($request->Verb === "GET") {
                     $d = $class->get($request->URL[1], $request->QueryString);
