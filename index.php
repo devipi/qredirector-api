@@ -125,7 +125,7 @@ final class index {
                 exit($this->Response->send());
             }
         }
-        //$this->Response->addHeader("WWW-Authenticate", "Basic realm=\"Sigesaf API\"");
+        $this->Response->addHeader("WWW-Authenticate", "Basic realm=\"Qredirector\"");
         $this->Response->send();
         throw new UnauthorizedException("Usuario y/o clave de acceso incorrectos.", 1);
     }
