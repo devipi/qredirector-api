@@ -80,7 +80,7 @@ final class codigos {
             $d = $this->get($codigo);
             if ($d != null) {
                 if (Ubicacion::esHijoDe($d->id_ubicacion, $this->Raiz)) {
-                    if($this->Bd->eliminar("codigos", "id = '$d->codigo'")){
+                    if($this->Bd->eliminar("codigos", "id = '$d->id'")){
                         return true;
                     }
                 }
